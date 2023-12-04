@@ -1,0 +1,6 @@
+<resources>
+
+    <style name="Base.Theme.CourseWork" parent="Theme.Material3.DayNight.NoActionBar" />
+
+    <style name="Theme.CourseWork" parent="Base.Theme.CourseWork" />
+</resources>
