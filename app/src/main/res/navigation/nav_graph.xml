@@ -7,8 +7,8 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.coursework.MainFragment"
+        android:name="com.coursework.ui.StartFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main">
+        tools:layout="@layout/fragment_start">
     </fragment>
 </navigation>

@@ -42,12 +42,13 @@ android {
 
 dependencies {
     val nav_version = "2.7.5"
-    val ok_http_version = "4.10.0"
+    val retrofit_version = "2.9.0"
 
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
 
-    implementation("com.squareup.okhttp3:okhttp:$ok_http_version")
+    implementation("com.squareup.retrofit2:retrofit:$retrofit_version")
+    implementation("com.squareup.retrofit2:converter-gson:$retrofit_version")
 
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
 
