@@ -6,31 +6,32 @@
     android:layout_height="match_parent"
     tools:context=".ui.StartFragment">
 
-    <TextView
-        android:id="@+id/asd"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:text="@string/placeHolderStr"
-        android:textColor="@android:color/holo_orange_light"
-        android:textSize="@dimen/st_text_size"
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.1" />
+        app:layout_constraintVertical_bias="1"
+        app:menu="@menu/bottom_navigation_menu" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+
+<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/saveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="24sp"
         android:backgroundTint="@android:color/holo_orange_light"
+        android:contentDescription="goButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1"
-        app:maxImageSize="32sp"
-        android:contentDescription="goButton" />
+        app:maxImageSize="32sp" />-->
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.coursework.databinding.FragmentTickersBinding
 
-class TickersFragment : Fragment() {
+class CurrencyPairsFragment : Fragment() {
 
     private var _binding: FragmentTickersBinding? = null
     private val binding get() = _binding!!
