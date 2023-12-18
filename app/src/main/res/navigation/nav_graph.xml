@@ -3,12 +3,44 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mainFragment">
+    app:startDestination="@id/startFragment">
 
     <fragment
-        android:id="@+id/mainFragment"
-        android:name="com.coursework.ui.StartFragment"
+        android:id="@+id/startFragment"
+        android:name="com.coursework.ui.fragments.StartFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_start">
+        <action
+            android:id="@+id/action_startFragment_to_globalCryptoDataFragment"
+            app:destination="@id/globalCryptoDataFragment" />
+        <action
+            android:id="@+id/action_startFragment_to_marketsForCoinFragment"
+            app:destination="@id/marketsForCoinFragment" />
+        <action
+            android:id="@+id/action_startFragment_to_currencyPairsFragment"
+            app:destination="@id/currencyPairsFragment" />
+        <action
+            android:id="@+id/action_startFragment_to_tickersAllCoinsFragment"
+            app:destination="@id/tickersAllCoinsFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/tickersAllCoinsFragment"
+        android:name="com.coursework.ui.fragments.TickersAllCoinsFragment"
+        android:label="fragment_currency_pairs"
+        tools:layout="@layout/fragment_currency_pairs" />
+    <fragment
+        android:id="@+id/globalCryptoDataFragment"
+        android:name="com.coursework.ui.fragments.GlobalCryptoDataFragment"
+        android:label="fragment_global_crypto_data"
+        tools:layout="@layout/fragment_global_crypto_data" />
+    <fragment
+        android:id="@+id/marketsForCoinFragment"
+        android:name="com.coursework.ui.fragments.MarketsForCoinFragment"
+        android:label="fragment_markets_for_coin"
+        tools:layout="@layout/fragment_markets_for_coin" />
+    <fragment
+        android:id="@+id/currencyPairsFragment"
+        android:name="com.coursework.ui.fragments.CurrencyPairsFragment"
+        android:label="fragment_tickers_for_all_coins"
+        tools:layout="@layout/fragment_tickers_for_all_coins" />
 </navigation>

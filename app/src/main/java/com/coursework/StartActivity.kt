@@ -1,4 +1,4 @@
-package com.coursework.ui
+package com.coursework
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
