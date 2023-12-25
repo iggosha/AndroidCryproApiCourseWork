@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.annotation.WorkerThread
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import com.coursework.data.ExchangesCodes
 import com.coursework.data.ExchangesCodes.BINANCE
 import com.coursework.data.controller.RetrofitController
 import com.coursework.databinding.FragmentCurrencyPairsBinding
@@ -49,3 +48,4 @@ class CurrencyPairsFragment : Fragment() {
         _binding = null
     }
 }
+

@@ -4,19 +4,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.WorkerThread
+import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
-import com.coursework.data.controller.RetrofitController
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.coursework.databinding.FragmentTickersForAllCoinsBinding
-import kotlinx.coroutines.launch
-import kotlin.concurrent.thread
+import com.coursework.ui.CoinRecyclerAdapter
+import com.coursework.ui.viewmodels.TickersAllCoinsViewModel
 
 class TickersAllCoinsFragment : Fragment() {
 
     private var _binding: FragmentTickersForAllCoinsBinding? = null
     private val binding get() = _binding!!
-    private val retrofitController = RetrofitController.getInstance()
+    private lateinit var adapter: CoinRecyclerAdapter
+    private val viewModel: TickersAllCoinsViewModel by viewModels { TickersAllCoinsViewModel.Factory }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,18 +26,21 @@ class TickersAllCoinsFragment : Fragment() {
     ): View {
         _binding = FragmentTickersForAllCoinsBinding.inflate(layoutInflater, container, false)
 
-        binding.fragButton1.setOnClickListener {
-            thread {
-                lifecycleScope.launch {
-                    loadData()
-                }
+        val recyclerView: RecyclerView = binding.recyclerView
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        adapter = CoinRecyclerAdapter().apply {
+            viewModel.coinList.observe(viewLifecycleOwner) {
+                coinDataList = it
             }
         }
+        recyclerView.adapter = adapter
+
+        binding.refreshButton.setOnClickListener {
+            binding.spinnerRing.visibility = ProgressBar.VISIBLE
+            viewModel.refreshCoins()
+            binding.spinnerRing.visibility = ProgressBar.GONE
+        }
         return binding.root
-    }
-    @WorkerThread
-    suspend fun loadData() {
-        binding.textView.text = retrofitController.getTickers().toString()
     }
 
     override fun onDestroy() {

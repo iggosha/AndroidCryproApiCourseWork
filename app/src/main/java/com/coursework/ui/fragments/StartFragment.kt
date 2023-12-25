@@ -49,3 +49,9 @@ class StartFragment : Fragment() {
         _binding = null
     }
 }
+
+
+// ресайклер
+// фэктори
+// вьюмоделы
+// 
