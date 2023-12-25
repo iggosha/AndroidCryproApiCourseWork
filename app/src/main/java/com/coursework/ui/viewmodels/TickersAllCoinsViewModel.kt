@@ -10,18 +10,23 @@ import com.coursework.data.controller.RetrofitController
 import com.coursework.data.responses.sub.CoinData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class TickersAllCoinsViewModel(private val retrofitController: RetrofitController) : ViewModel() {
 
     private var _coinList = MutableLiveData<List<CoinData>>()
-    var coinList: LiveData<List<CoinData>> = _coinList
+    val coinList: LiveData<List<CoinData>> = _coinList
+    private var _isVisible = MutableLiveData<Boolean>()
+    val progressBarVisibility: LiveData<Boolean> = _isVisible
+
+    init {
+        refreshCoins()
+    }
 
     fun refreshCoins() {
         viewModelScope.launch(Dispatchers.IO) {
-            withContext(Dispatchers.Main) {
-                _coinList.value = retrofitController.getTickers().coins
-            }
+            _isVisible.postValue(true)
+            _coinList.postValue(retrofitController.getTickers().coins)
+            _isVisible.postValue(false)
         }
     }
 

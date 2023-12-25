@@ -36,9 +36,14 @@ class TickersAllCoinsFragment : Fragment() {
         recyclerView.adapter = adapter
 
         binding.refreshButton.setOnClickListener {
-            binding.spinnerRing.visibility = ProgressBar.VISIBLE
             viewModel.refreshCoins()
-            binding.spinnerRing.visibility = ProgressBar.GONE
+        }
+        viewModel.progressBarVisibility.observe(viewLifecycleOwner) {
+            if (it) {
+                binding.spinnerRing.visibility = ProgressBar.VISIBLE
+            } else {
+                binding.spinnerRing.visibility = ProgressBar.GONE
+            }
         }
         return binding.root
     }
