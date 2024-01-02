@@ -4,4 +4,6 @@
     <string name="placeHolderStr">samara</string>
     <string name="text_placeholder">text</string>
     <string name="price_placeholder">price</string>
+    <string name="markets_header">Markets for coin</string>
+    <string name="tickers_header">Tickers / Coins data</string>
 </resources>

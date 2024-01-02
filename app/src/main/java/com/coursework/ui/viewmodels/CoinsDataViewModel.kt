@@ -11,12 +11,12 @@ import com.coursework.data.responses.sub.CoinData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class TickersAllCoinsViewModel(private val retrofitController: RetrofitController) : ViewModel() {
+class CoinsDataViewModel(private val retrofitController: RetrofitController) : ViewModel() {
 
     private var _coinList = MutableLiveData<List<CoinData>>()
     val coinList: LiveData<List<CoinData>> = _coinList
-    private var _isVisible = MutableLiveData<Boolean>()
-    val progressBarVisibility: LiveData<Boolean> = _isVisible
+    private var _progressBarVisibility = MutableLiveData<Boolean>()
+    val progressBarVisibility: LiveData<Boolean> = _progressBarVisibility
 
     init {
         refreshCoins()
@@ -24,20 +24,20 @@ class TickersAllCoinsViewModel(private val retrofitController: RetrofitControlle
 
     fun refreshCoins() {
         viewModelScope.launch(Dispatchers.IO) {
-            _isVisible.postValue(true)
+            _progressBarVisibility.postValue(true)
             _coinList.postValue(retrofitController.getTickers().coins)
-            _isVisible.postValue(false)
+            _progressBarVisibility.postValue(false)
         }
     }
 
     companion object {
 
-        val Factory: ViewModelProvider.Factory = object : ViewModelProvider.Factory {
+        fun Factory(): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
             @Suppress("UNCHECKED_CAST")
             override fun <T : ViewModel> create(
                 modelClass: Class<T>, extras: CreationExtras
             ): T {
-                return TickersAllCoinsViewModel(
+                return CoinsDataViewModel(
                     RetrofitController.getInstance()
                 ) as T
             }

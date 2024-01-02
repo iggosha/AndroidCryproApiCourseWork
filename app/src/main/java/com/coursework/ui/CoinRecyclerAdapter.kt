@@ -8,14 +8,16 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.coursework.R
+import com.coursework.data.NavToMarketsInterface
 import com.coursework.data.responses.sub.CoinData
 
-class CoinRecyclerAdapter : RecyclerView.Adapter<CoinRecyclerAdapter.CardHolder>() {
+class CoinRecyclerAdapter(private val navToMarketsAction: NavToMarketsInterface) :
+    RecyclerView.Adapter<CoinRecyclerAdapter.CoinDataHolder>() {
 
-    class CardHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class CoinDataHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        val coinSymbol: TextView = itemView.findViewById(R.id.coinSymbol)
-        val coinName: TextView = itemView.findViewById(R.id.coinName)
+        val coinSymbol: TextView = itemView.findViewById(R.id.marketName)
+        val coinName: TextView = itemView.findViewById(R.id.marketBase)
         val coinPriceUsd: TextView = itemView.findViewById(R.id.coinPriceUsd)
     }
 
@@ -26,25 +28,33 @@ class CoinRecyclerAdapter : RecyclerView.Adapter<CoinRecyclerAdapter.CardHolder>
             notifyDataSetChanged()
         }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CoinDataHolder {
         val itemView =
             LayoutInflater.from(parent.context).inflate(R.layout.coin_item, parent, false)
-        return CardHolder(itemView)
+        return CoinDataHolder(itemView)
     }
 
     override fun getItemCount() = coinDataList.size
 
-    override fun onBindViewHolder(holder: CardHolder, position: Int) {
+    override fun onBindViewHolder(holder: CoinDataHolder, position: Int) {
         val coinDataItem = coinDataList[position]
         holder.coinSymbol.text = coinDataItem.symbol
         holder.coinName.text = coinDataItem.name
         holder.coinPriceUsd.text =
-            "${(kotlin.math.round(coinDataItem.priceUsd!!.toDouble() * 1000) / 1000)}$"
+            "${kotlin.math.round(coinDataItem.priceUsd!!.toDouble() * 1000) / 1000}$"
         holder.itemView.tag = coinDataItem.id
         holder.coinSymbol.setOnClickListener {
             AlertDialog.Builder(holder.coinSymbol.context)
                 .setIcon(R.drawable.question_icon).setTitle("Coin data:")
                 .setMessage(coinDataItem.toString()).setNegativeButton("Close") { _, _ -> }.show()
+        }
+        holder.coinName.setOnClickListener {
+            AlertDialog.Builder(holder.coinName.context)
+                .setIcon(R.drawable.question_icon).setTitle("Coin data:")
+                .setMessage(coinDataItem.toString()).setNegativeButton("Close") { _, _ -> }.show()
+        }
+        holder.coinPriceUsd.setOnClickListener {
+            navToMarketsAction.goToMarkets(coinDataItem.id!!)
         }
     }
 }

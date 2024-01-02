@@ -1,9 +1,11 @@
 package com.coursework.data
 
-enum class CoinsCodes(val value: Int) {
-    BITCOIN(90),
-    ETHEREUM(80)
+interface NavToMarketsInterface {
+
+    fun goToMarkets(coinId: String)
 }
-enum class ExchangesCodes(val value: Int) {
-    BINANCE(5),
+
+interface NavToExchangeInterface {
+
+    fun goToExchange(exchangeName: String)
 }

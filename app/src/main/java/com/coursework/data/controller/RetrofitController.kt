@@ -19,7 +19,7 @@ interface RetrofitController {
     @GET("ticker/")
     suspend fun getTickerById(@Query("id") coinId: Int): List<TickerSpecificCoinResponse>
     @GET("coin/markets/")
-    suspend fun getMarketsForCoinId(@Query("id") coinId: Int): List<MarketForCoinResponse>
+    suspend fun getMarketsForCoinById(@Query("id") coinId: String): List<MarketForCoinResponse>
     @GET("exchange/")
     suspend fun getExchangeDataById(@Query("id") exchangeId: Int): FetchExchangeDataResponse
 
