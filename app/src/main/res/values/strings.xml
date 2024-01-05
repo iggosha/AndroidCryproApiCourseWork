@@ -1,9 +1,8 @@
 <resources>
     <string name="app_name">CourseWork</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="placeHolderStr">samara</string>
-    <string name="text_placeholder">text</string>
-    <string name="price_placeholder">price</string>
+    <string name="text_placeholder">Loading text…</string>
+    <string name="price_placeholder">Loading price…</string>
     <string name="markets_header">Markets for coin</string>
     <string name="tickers_header">Tickers / Coins data</string>
+    <string name="exchange_header">Info about exchange</string>
 </resources>

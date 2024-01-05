@@ -15,13 +15,13 @@ data class MarketForCoinResponse(
 
     override fun toString(): String =
         """
-            name $name
-            base $base
-            quote $quote
-            price $price
-            price$ $priceUsd$ 
-            volume $volume 
-            volume$ $volumeUsd 
-            time $time
+            Name: $name
+            Base: $base
+            Quote: $quote
+            Price: $price
+            Price, $: $priceUsd 
+            Volume: $volume 
+            Volume, $: $volumeUsd 
+            Time: $time
         """.trimIndent()
 }

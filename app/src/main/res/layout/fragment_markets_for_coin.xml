@@ -33,7 +33,7 @@
         app:layout_constraintVertical_bias="0.975" />
 
     <TextView
-        android:id="@+id/baseCoin"
+        android:id="@+id/sign"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/holo_green_light"

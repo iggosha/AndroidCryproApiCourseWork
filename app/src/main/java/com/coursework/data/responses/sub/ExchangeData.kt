@@ -10,11 +10,16 @@ data class ExchangeData(
     @SerializedName("active_pairs") val activePairs: Int,
     @SerializedName("url") val url: String,
     @SerializedName("country") val country: String
-)
-{
+) {
 
     override fun toString(): String =
-        """$id $name $nameId $volumeUsd $activePairs $url $country
-            
+        """
+            ID: $id
+            Name: $name
+            Name ID: $nameId
+            Volume, $: $volumeUsd
+            Active pairs: $activePairs
+            Site URL: $url
+            Country: $country
         """.trimIndent()
 }

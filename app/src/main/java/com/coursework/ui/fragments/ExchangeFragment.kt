@@ -26,7 +26,7 @@ class ExchangeFragment : Fragment() {
         _binding = FragmentExchangeBinding.inflate(layoutInflater, container, false)
 
         viewModel.exchanges.observe(viewLifecycleOwner) {
-            binding.asdasd.text = it.toString()
+            binding.exchangeData.text = it.toString()
         }
 
         viewModel.progressBarVisibility.observe(viewLifecycleOwner) {

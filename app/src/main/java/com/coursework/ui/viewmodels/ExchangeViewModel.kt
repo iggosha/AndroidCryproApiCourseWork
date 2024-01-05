@@ -15,8 +15,8 @@ class ExchangeViewModel(
     private val retrofitController: RetrofitController
 ) : ViewModel() {
 
-    private var _exchanges = MutableLiveData<List<ExchangeData>>()
-    val exchanges: LiveData<List<ExchangeData>> = _exchanges
+    private var _exchanges = MutableLiveData<ExchangeData>()
+    val exchanges: LiveData<ExchangeData> = _exchanges
     private var _progressBarVisibility = MutableLiveData<Boolean>()
     val progressBarVisibility: LiveData<Boolean> = _progressBarVisibility
 
@@ -27,10 +27,16 @@ class ExchangeViewModel(
     fun refreshExchange() {
         viewModelScope.launch {
             _progressBarVisibility.postValue(true)
-            _exchanges.postValue(retrofitController.getExchanges().values.toList())
+            _exchanges.postValue(findExchangeByName(exchangeName))
             _progressBarVisibility.postValue(false)
         }
     }
+
+    private suspend fun findExchangeByName(exchangeName: String): ExchangeData? =
+        retrofitController
+            .getExchanges()
+            .values
+            .find { it.name == exchangeName }
 
     companion object {
 
