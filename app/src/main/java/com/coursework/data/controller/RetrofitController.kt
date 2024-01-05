@@ -5,6 +5,7 @@ import com.coursework.data.responses.GlobalCryptoDataResponse
 import com.coursework.data.responses.MarketForCoinResponse
 import com.coursework.data.responses.TickerSpecificCoinResponse
 import com.coursework.data.responses.TickersAllCoinsResponse
+import com.coursework.data.responses.sub.ExchangeData
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
@@ -22,6 +23,8 @@ interface RetrofitController {
     suspend fun getMarketsForCoinById(@Query("id") coinId: String): List<MarketForCoinResponse>
     @GET("exchange/")
     suspend fun getExchangeDataById(@Query("id") exchangeId: Int): FetchExchangeDataResponse
+    @GET("exchanges/")
+    suspend fun getExchanges(): Map<String, ExchangeData>
 
     companion object {
 

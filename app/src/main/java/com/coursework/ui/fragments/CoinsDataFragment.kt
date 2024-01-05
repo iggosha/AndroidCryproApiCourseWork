@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.coursework.data.NavToMarketsInterface
 import com.coursework.databinding.FragmentCoinsDataBinding
-import com.coursework.ui.CoinRecyclerAdapter
+import com.coursework.ui.adapters.CoinRecyclerAdapter
 import com.coursework.ui.viewmodels.CoinsDataViewModel
 
 class CoinsDataFragment : Fragment() {

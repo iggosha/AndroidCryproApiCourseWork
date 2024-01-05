@@ -7,11 +7,13 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.coursework.data.NavToExchangeInterface
 import com.coursework.databinding.FragmentMarketsForCoinBinding
-import com.coursework.ui.MarketsForCoinAdapter
+import com.coursework.ui.adapters.MarketsForCoinAdapter
 import com.coursework.ui.viewmodels.MarketsForCoinViewModel
 
 class MarketsForCoinFragment : Fragment() {
@@ -34,7 +36,7 @@ class MarketsForCoinFragment : Fragment() {
 
         val recyclerView: RecyclerView = binding.recyclerView
         recyclerView.layoutManager = LinearLayoutManager(context)
-        adapter = MarketsForCoinAdapter().apply {
+        adapter = MarketsForCoinAdapter(action).apply {
             viewModel.marketsList.observe(viewLifecycleOwner) {
                 marketForCoinList = it
             }
@@ -57,5 +59,15 @@ class MarketsForCoinFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    private val action = object : NavToExchangeInterface {
+        override fun goToExchange(exchangeName: String) {
+            val action =
+                MarketsForCoinFragmentDirections.actionMarketsForCoinFragmentToExchangeFragment(
+                    exchangeName
+                )
+            findNavController().navigate(action)
+        }
     }
 }

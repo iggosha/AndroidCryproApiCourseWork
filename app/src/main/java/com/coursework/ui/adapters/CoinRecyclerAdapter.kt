@@ -1,4 +1,4 @@
-package com.coursework.ui
+package com.coursework.ui.adapters
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog

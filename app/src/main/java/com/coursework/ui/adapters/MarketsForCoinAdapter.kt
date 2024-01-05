@@ -1,4 +1,4 @@
-package com.coursework.ui
+package com.coursework.ui.adapters
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
@@ -8,9 +8,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.coursework.R
+import com.coursework.data.NavToExchangeInterface
 import com.coursework.data.responses.MarketForCoinResponse
 
-class MarketsForCoinAdapter :
+class MarketsForCoinAdapter(private val navToExchangeAction: NavToExchangeInterface) :
     RecyclerView.Adapter<MarketsForCoinAdapter.MarketHolder>() {
 
     class MarketHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -47,7 +48,11 @@ class MarketsForCoinAdapter :
         holder.marketName.setOnClickListener {
             AlertDialog.Builder(holder.marketName.context)
                 .setIcon(R.drawable.question_icon).setTitle("Market data:")
-                .setMessage(marketItem.toString()).setNegativeButton("Close") { _, _ -> }.show()
+                .setMessage(marketItem.toString())
+                .setNegativeButton("More") { _, _ ->
+                    navToExchangeAction.goToExchange(marketItem.name)
+                }
+                .setPositiveButton("Close") { _, _ -> }.show()
         }
     }
 }
