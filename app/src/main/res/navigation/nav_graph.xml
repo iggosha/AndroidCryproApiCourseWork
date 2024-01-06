@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_coinsDataFragment_to_marketsForCoinFragment"
             app:destination="@id/marketsForCoinFragment" />
+        <action
+            android:id="@+id/action_coinsDataFragment_to_coinExtendedDataFragment"
+            app:destination="@id/coinExtendedDataFragment" />
     </fragment>
     <fragment
         android:id="@+id/marketsForCoinFragment"
@@ -32,6 +35,15 @@
         tools:layout="@layout/fragment_exchange" >
         <argument
             android:name="exchangeName"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/coinExtendedDataFragment"
+        android:name="com.coursework.ui.fragments.CoinExtendedDataFragment"
+        android:label="fragment_coin_extended_data"
+        tools:layout="@layout/fragment_coin_extended_data" >
+        <argument
+            android:name="coinId"
             app:argType="string" />
     </fragment>
 </navigation>

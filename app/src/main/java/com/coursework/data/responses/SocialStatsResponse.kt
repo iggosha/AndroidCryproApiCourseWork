@@ -7,4 +7,8 @@ import com.google.gson.annotations.SerializedName
 data class SocialStatsResponse(
     @SerializedName("reddit") val redditData: RedditData?,
     @SerializedName("twitter") val twitterData: TwitterData?
-)
+) {
+
+    override fun toString() =
+        redditData.toString() + '\n' + twitterData.toString()
+}

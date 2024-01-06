@@ -10,7 +10,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.coursework.data.NavToExchangeInterface
 import com.coursework.databinding.FragmentMarketsForCoinBinding
 import com.coursework.ui.adapters.MarketsForCoinAdapter
@@ -20,13 +19,11 @@ class MarketsForCoinFragment : Fragment() {
 
     private var _binding: FragmentMarketsForCoinBinding? = null
     private val binding get() = _binding!!
-    private lateinit var adapter: MarketsForCoinAdapter
+    private lateinit var marketsForCoinAdapter: MarketsForCoinAdapter
     private val args by navArgs<MarketsForCoinFragmentArgs>()
     private val coinId by lazy { args.coinId }
     private val viewModel: MarketsForCoinViewModel by viewModels {
-        MarketsForCoinViewModel.Factory(
-            coinId
-        )
+        MarketsForCoinViewModel.Factory(coinId)
     }
 
     override fun onCreateView(
@@ -34,14 +31,13 @@ class MarketsForCoinFragment : Fragment() {
     ): View {
         _binding = FragmentMarketsForCoinBinding.inflate(layoutInflater, container, false)
 
-        val recyclerView: RecyclerView = binding.recyclerView
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        adapter = MarketsForCoinAdapter(action).apply {
-            viewModel.marketsList.observe(viewLifecycleOwner) {
-                marketForCoinList = it
+        binding.marketsForCoinRecycler.layoutManager = LinearLayoutManager(context)
+        marketsForCoinAdapter = MarketsForCoinAdapter(action).apply {
+            viewModel.marketsForCoinList.observe(viewLifecycleOwner) {
+                marketsForCoinList = it
             }
         }
-        recyclerView.adapter = adapter
+        binding.marketsForCoinRecycler.adapter = marketsForCoinAdapter
 
         binding.refreshButton.setOnClickListener {
             viewModel.refreshMarkets()

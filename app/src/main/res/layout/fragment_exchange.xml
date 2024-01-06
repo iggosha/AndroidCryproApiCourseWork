@@ -8,9 +8,9 @@
 
 
     <TextView
-        android:id="@+id/sign"
+        android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/header_height"
         android:background="@android:color/holo_green_light"
         android:gravity="center"
         android:importantForAccessibility="no"
@@ -24,10 +24,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0" />
 
+
     <TextView
         android:id="@+id/exchangeData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/header_height"
         android:importantForAccessibility="no"
         android:text="@string/text_placeholder"
         android:textAlignment="center"
@@ -37,7 +39,35 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.1" />
+        app:layout_constraintVertical_bias="0" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/header_height"
+        android:background="@android:color/holo_green_light"
+        android:gravity="center"
+        android:importantForAccessibility="no"
+        android:text="@string/currency_pairs_header"
+        android:textColor="@color/white"
+        android:textSize="@dimen/myTextSize"
+        app:layout_constraintBottom_toTopOf="@+id/currencyPairsRecycler"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/currencyPairsRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="365dp"
+        android:fadeScrollbars="false"
+        android:scrollbarThumbVertical="@android:color/holo_green_light"
+        android:scrollbars="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/refreshButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="@dimen/myTextSize"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:listitem="@layout/currency_pair_item" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/refreshButton"

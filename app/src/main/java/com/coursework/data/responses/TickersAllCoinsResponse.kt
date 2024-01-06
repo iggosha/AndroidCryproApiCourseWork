@@ -8,6 +8,3 @@ data class TickersAllCoinsResponse(
     @SerializedName("data") val coins: List<CoinData>,
     @SerializedName("info") val info: CoinInfo
 )
-
-
-

@@ -9,3 +9,7 @@ interface NavToExchangeInterface {
 
     fun goToExchange(exchangeName: String)
 }
+interface NavToCoinInterface {
+
+    fun goToCoin(coinId: String)
+}

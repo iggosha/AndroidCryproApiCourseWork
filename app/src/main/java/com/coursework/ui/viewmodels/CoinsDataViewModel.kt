@@ -13,19 +13,19 @@ import kotlinx.coroutines.launch
 
 class CoinsDataViewModel(private val retrofitController: RetrofitController) : ViewModel() {
 
-    private var _coinList = MutableLiveData<List<CoinData>>()
-    val coinList: LiveData<List<CoinData>> = _coinList
+    private var _coinsDataList = MutableLiveData<List<CoinData>>()
+    val coinsDataList: LiveData<List<CoinData>> = _coinsDataList
     private var _progressBarVisibility = MutableLiveData<Boolean>()
     val progressBarVisibility: LiveData<Boolean> = _progressBarVisibility
 
     init {
-        refreshCoins()
+        refreshCoinsData()
     }
 
-    fun refreshCoins() {
+    fun refreshCoinsData() {
         viewModelScope.launch(Dispatchers.IO) {
             _progressBarVisibility.postValue(true)
-            _coinList.postValue(retrofitController.getTickers().coins)
+            _coinsDataList.postValue(retrofitController.getTickers().coins)
             _progressBarVisibility.postValue(false)
         }
     }

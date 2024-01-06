@@ -12,8 +12,7 @@ data class ExchangeData(
     @SerializedName("country") val country: String
 ) {
 
-    override fun toString(): String =
-        """
+    override fun toString(): String = """
             ID: $id
             Name: $name
             Name ID: $nameId

@@ -3,6 +3,8 @@
     <string name="text_placeholder">Loading text…</string>
     <string name="price_placeholder">Loading price…</string>
     <string name="markets_header">Markets for coin</string>
-    <string name="tickers_header">Tickers / Coins data</string>
-    <string name="exchange_header">Info about exchange</string>
+    <string name="tickers_header">Tickers/Coins data</string>
+    <string name="ticker_header">Extended ticker/coin data</string>
+    <string name="exchange_header">Data about exchange</string>
+    <string name="currency_pairs_header">Currency pairs of exchange</string>
 </resources>

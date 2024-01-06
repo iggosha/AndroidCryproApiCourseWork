@@ -13,8 +13,7 @@ data class MarketForCoinResponse(
     @SerializedName("time") val time: Long
 ) {
 
-    override fun toString(): String =
-        """
+    override fun toString(): String = """
             Name: $name
             Base: $base
             Quote: $quote

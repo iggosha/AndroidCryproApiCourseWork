@@ -21,8 +21,7 @@ data class CoinData(
     @SerializedName("msupply") val msupply: String?
 ) {
 
-    override fun toString(): String {
-        return """
+    override fun toString(): String = """
             ID: $id
             Symbol: $symbol
             Name: $name
@@ -39,5 +38,17 @@ data class CoinData(
             Supplying: $tsupply
             Will be supplied: $msupply
         """.trimIndent()
-    }
+
+    fun getShortData(): String = """
+            Symbol: $symbol
+            Name: $name
+            Rank: $rank
+            Price: $priceUsd $ / $priceBtc BTC
+            Market capital.: $marketCapUsd USD
+            1-hour change: $percentChange1h %
+            24-hours change: $percentChange24h %
+            7-days change: $percentChange7d %
+            Bargaining volume 24h.: $volume24
+            Bargaining volume 24h., alt.: $volume24a
+        """.trimIndent()
 }

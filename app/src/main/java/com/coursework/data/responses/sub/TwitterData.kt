@@ -5,4 +5,9 @@ import com.google.gson.annotations.SerializedName
 data class TwitterData(
     @SerializedName("followers_count") val followersCount: Int?,
     @SerializedName("status_count") val statusCount: Int?
-)
+) {
+
+    override fun toString(): String = """
+        Followers on Twitter: $followersCount
+        """.trimIndent()
+}

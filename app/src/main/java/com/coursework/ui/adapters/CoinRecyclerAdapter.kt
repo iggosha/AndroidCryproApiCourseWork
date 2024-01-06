@@ -8,10 +8,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.coursework.R
+import com.coursework.data.NavToCoinInterface
 import com.coursework.data.NavToMarketsInterface
 import com.coursework.data.responses.sub.CoinData
 
-class CoinRecyclerAdapter(private val navToMarketsAction: NavToMarketsInterface) :
+class CoinRecyclerAdapter(
+    private val navToMarketsAction: NavToMarketsInterface,
+    private val navToCoinInterface: NavToCoinInterface
+) :
     RecyclerView.Adapter<CoinRecyclerAdapter.CoinDataHolder>() {
 
     class CoinDataHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -21,9 +25,8 @@ class CoinRecyclerAdapter(private val navToMarketsAction: NavToMarketsInterface)
         val coinPriceUsd: TextView = itemView.findViewById(R.id.coinPriceUsd)
     }
 
-    var coinDataList: List<CoinData> = emptyList()
-        @SuppressLint("NotifyDataSetChanged")
-        set(value) {
+    var coinsDataList: List<CoinData> = emptyList()
+        @SuppressLint("NotifyDataSetChanged") set(value) {
             field = value
             notifyDataSetChanged()
         }
@@ -34,24 +37,30 @@ class CoinRecyclerAdapter(private val navToMarketsAction: NavToMarketsInterface)
         return CoinDataHolder(itemView)
     }
 
-    override fun getItemCount() = coinDataList.size
+    override fun getItemCount() = coinsDataList.size
 
     override fun onBindViewHolder(holder: CoinDataHolder, position: Int) {
-        val coinDataItem = coinDataList[position]
+        val coinDataItem = coinsDataList[position]
         holder.coinSymbol.text = coinDataItem.symbol
         holder.coinName.text = coinDataItem.name
         holder.coinPriceUsd.text =
             "${kotlin.math.round(coinDataItem.priceUsd!!.toDouble() * 1000) / 1000}$"
         holder.itemView.tag = coinDataItem.id
         holder.coinSymbol.setOnClickListener {
-            AlertDialog.Builder(holder.coinSymbol.context)
-                .setIcon(R.drawable.question_icon).setTitle("Coin data:")
-                .setMessage(coinDataItem.toString()).setNegativeButton("Close") { _, _ -> }.show()
+            AlertDialog.Builder(holder.coinSymbol.context).setIcon(R.drawable.question_icon)
+                .setTitle("Coin data:").setMessage(coinDataItem.getShortData())
+                .setNegativeButton("More") { _, _ ->
+                    navToCoinInterface.goToCoin(coinDataItem.id!!)
+                }
+                .setPositiveButton("Close") { _, _ -> }.show()
         }
         holder.coinName.setOnClickListener {
-            AlertDialog.Builder(holder.coinName.context)
-                .setIcon(R.drawable.question_icon).setTitle("Coin data:")
-                .setMessage(coinDataItem.toString()).setNegativeButton("Close") { _, _ -> }.show()
+            AlertDialog.Builder(holder.coinName.context).setIcon(R.drawable.question_icon)
+                .setTitle("Coin data:").setMessage(coinDataItem.getShortData())
+                .setNegativeButton("More") { _, _ ->
+                    navToCoinInterface.goToCoin(coinDataItem.id!!)
+                }
+                .setPositiveButton("Close") { _, _ -> }.show()
         }
         holder.coinPriceUsd.setOnClickListener {
             navToMarketsAction.goToMarkets(coinDataItem.id!!)

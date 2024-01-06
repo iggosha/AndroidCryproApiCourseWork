@@ -21,24 +21,22 @@ class MarketsForCoinAdapter(private val navToExchangeAction: NavToExchangeInterf
         val marketCoinPriceQuote: TextView = itemView.findViewById(R.id.marketCoinPriceQuote)
     }
 
-    var marketForCoinList: List<MarketForCoinResponse> = emptyList()
-        @SuppressLint("NotifyDataSetChanged")
-        set(value) {
+    var marketsForCoinList: List<MarketForCoinResponse> = emptyList()
+        @SuppressLint("NotifyDataSetChanged") set(value) {
             field = value
             notifyDataSetChanged()
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MarketHolder {
-        val itemView =
-            LayoutInflater.from(parent.context)
-                .inflate(R.layout.market_for_coin_item, parent, false)
+        val itemView = LayoutInflater.from(parent.context)
+            .inflate(R.layout.market_for_coin_item, parent, false)
         return MarketHolder(itemView)
     }
 
-    override fun getItemCount() = marketForCoinList.size
+    override fun getItemCount() = marketsForCoinList.size
 
     override fun onBindViewHolder(holder: MarketHolder, position: Int) {
-        val marketItem = marketForCoinList[position]
+        val marketItem = marketsForCoinList[position]
         holder.itemView.tag = marketItem.name
         holder.marketName.text = marketItem.name
         holder.marketCoinPriceUsd.text =
@@ -46,13 +44,11 @@ class MarketsForCoinAdapter(private val navToExchangeAction: NavToExchangeInterf
         holder.marketCoinPriceQuote.text =
             "${marketItem.base} ${kotlin.math.round(marketItem.price * 1000) / 1000} ${marketItem.quote}"
         holder.marketName.setOnClickListener {
-            AlertDialog.Builder(holder.marketName.context)
-                .setIcon(R.drawable.question_icon).setTitle("Market data:")
-                .setMessage(marketItem.toString())
+            AlertDialog.Builder(holder.marketName.context).setIcon(R.drawable.question_icon)
+                .setTitle("Market data:").setMessage(marketItem.toString())
                 .setNegativeButton("More") { _, _ ->
                     navToExchangeAction.goToExchange(marketItem.name)
-                }
-                .setPositiveButton("Close") { _, _ -> }.show()
+                }.setPositiveButton("Close") { _, _ -> }.show()
         }
     }
 }

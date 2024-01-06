@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.coursework.data.NavToCoinInterface
 import com.coursework.data.NavToMarketsInterface
 import com.coursework.databinding.FragmentCoinsDataBinding
 import com.coursework.ui.adapters.CoinRecyclerAdapter
@@ -19,26 +19,24 @@ class CoinsDataFragment : Fragment() {
 
     private var _binding: FragmentCoinsDataBinding? = null
     private val binding get() = _binding!!
-    private lateinit var adapter: CoinRecyclerAdapter
+    private lateinit var coinRecyclerAdapter: CoinRecyclerAdapter
     private val viewModel: CoinsDataViewModel by viewModels { CoinsDataViewModel.Factory() }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCoinsDataBinding.inflate(layoutInflater, container, false)
 
-        val recyclerView: RecyclerView = binding.recyclerView
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        adapter = CoinRecyclerAdapter(action).apply {
-            viewModel.coinList.observe(viewLifecycleOwner) {
-                coinDataList = it
+        binding.coinsDataRecycler.layoutManager = LinearLayoutManager(context)
+        coinRecyclerAdapter = CoinRecyclerAdapter(actionToMarkets, actionToCoin).apply {
+            viewModel.coinsDataList.observe(viewLifecycleOwner) {
+                coinsDataList = it
             }
         }
-        recyclerView.adapter = adapter
+        binding.coinsDataRecycler.adapter = coinRecyclerAdapter
 
         binding.refreshButton.setOnClickListener {
-            viewModel.refreshCoins()
+            viewModel.refreshCoinsData()
         }
         viewModel.progressBarVisibility.observe(viewLifecycleOwner) {
             if (it) {
@@ -55,10 +53,20 @@ class CoinsDataFragment : Fragment() {
         _binding = null
     }
 
-    private val action = object : NavToMarketsInterface {
+    private val actionToMarkets = object : NavToMarketsInterface {
         override fun goToMarkets(coinId: String) {
             val action =
                 CoinsDataFragmentDirections.actionCoinsDataFragmentToMarketsForCoinFragment(coinId)
+            findNavController().navigate(action)
+        }
+    }
+
+    private val actionToCoin = object : NavToCoinInterface {
+        override fun goToCoin(coinId: String) {
+            val action =
+                CoinsDataFragmentDirections.actionCoinsDataFragmentToCoinExtendedDataFragment(
+                    coinId
+                )
             findNavController().navigate(action)
         }
     }

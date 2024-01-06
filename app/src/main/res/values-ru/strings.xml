@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Курсовая работа</string>
+    <string name="text_placeholder">Загрузка текста…</string>
+    <string name="price_placeholder">Загрузка цены…</string>
+    <string name="markets_header">Рынки для монеты</string>
+    <string name="tickers_header">Информация о тикере (монете)</string>
+    <string name="ticker_header">Расширенная информация о тикере (монете)</string>
+    <string name="exchange_header">Информация о бирже</string>
+    <string name="currency_pairs_header">Торговые пары биржи</string>
+</resources>
