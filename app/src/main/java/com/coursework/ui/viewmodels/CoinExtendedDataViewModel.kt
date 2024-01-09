@@ -8,7 +8,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.CreationExtras
 import com.coursework.data.controller.RetrofitController
 import com.coursework.data.responses.SocialStatsResponse
-import com.coursework.data.responses.sub.CoinData
+import com.coursework.data.responses.CoinData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

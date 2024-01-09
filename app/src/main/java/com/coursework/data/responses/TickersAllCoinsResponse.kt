@@ -1,6 +1,5 @@
 package com.coursework.data.responses
 
-import com.coursework.data.responses.sub.CoinData
 import com.coursework.data.responses.sub.CoinInfo
 import com.google.gson.annotations.SerializedName
 

@@ -1,4 +1,4 @@
-package com.coursework.data.responses.sub
+package com.coursework.data.responses
 
 import com.google.gson.annotations.SerializedName
 

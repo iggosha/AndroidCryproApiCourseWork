@@ -60,12 +60,12 @@
         android:id="@+id/currencyPairsRecycler"
         android:layout_width="match_parent"
         android:layout_height="365dp"
+        android:layout_marginBottom="@dimen/myTextSize"
         android:fadeScrollbars="false"
         android:scrollbarThumbVertical="@android:color/holo_green_light"
         android:scrollbars="vertical"
         app:layout_constraintBottom_toTopOf="@+id/refreshButton"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="@dimen/myTextSize"
         app:layout_constraintStart_toStartOf="parent"
         tools:listitem="@layout/currency_pair_item" />
 

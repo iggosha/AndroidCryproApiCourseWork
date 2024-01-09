@@ -32,7 +32,7 @@ class MarketsForCoinFragment : Fragment() {
         _binding = FragmentMarketsForCoinBinding.inflate(layoutInflater, container, false)
 
         binding.marketsForCoinRecycler.layoutManager = LinearLayoutManager(context)
-        marketsForCoinAdapter = MarketsForCoinAdapter(action).apply {
+        marketsForCoinAdapter = MarketsForCoinAdapter(actionToExchange).apply {
             viewModel.marketsForCoinList.observe(viewLifecycleOwner) {
                 marketsForCoinList = it
             }
@@ -57,7 +57,7 @@ class MarketsForCoinFragment : Fragment() {
         _binding = null
     }
 
-    private val action = object : NavToExchangeInterface {
+    private val actionToExchange = object : NavToExchangeInterface {
         override fun goToExchange(exchangeName: String) {
             val action =
                 MarketsForCoinFragmentDirections.actionMarketsForCoinFragmentToExchangeFragment(

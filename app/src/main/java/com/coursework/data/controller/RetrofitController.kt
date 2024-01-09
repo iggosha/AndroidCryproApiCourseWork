@@ -4,8 +4,8 @@ import com.coursework.data.responses.FetchExchangeDataResponse
 import com.coursework.data.responses.MarketForCoinResponse
 import com.coursework.data.responses.SocialStatsResponse
 import com.coursework.data.responses.TickersAllCoinsResponse
-import com.coursework.data.responses.sub.CoinData
-import com.coursework.data.responses.sub.ExchangeData
+import com.coursework.data.responses.CoinData
+import com.coursework.data.responses.ExchangeData
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
@@ -25,7 +25,6 @@ interface RetrofitController {
     suspend fun getExchanges(): Map<String, ExchangeData>
     @GET("coin/social_stats/")
     suspend fun getSocialStats(@Query("id") coinId: String): SocialStatsResponse
-
 
     companion object {
 

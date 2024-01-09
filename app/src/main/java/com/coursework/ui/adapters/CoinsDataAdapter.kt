@@ -10,13 +10,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.coursework.R
 import com.coursework.data.NavToCoinInterface
 import com.coursework.data.NavToMarketsInterface
-import com.coursework.data.responses.sub.CoinData
+import com.coursework.data.responses.CoinData
 
-class CoinRecyclerAdapter(
+class CoinsDataAdapter(
     private val navToMarketsAction: NavToMarketsInterface,
-    private val navToCoinInterface: NavToCoinInterface
+    private val navToCoinAction: NavToCoinInterface
 ) :
-    RecyclerView.Adapter<CoinRecyclerAdapter.CoinDataHolder>() {
+    RecyclerView.Adapter<CoinsDataAdapter.CoinDataHolder>() {
 
     class CoinDataHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -50,7 +50,7 @@ class CoinRecyclerAdapter(
             AlertDialog.Builder(holder.coinSymbol.context).setIcon(R.drawable.question_icon)
                 .setTitle("Coin data:").setMessage(coinDataItem.getShortData())
                 .setNegativeButton("More") { _, _ ->
-                    navToCoinInterface.goToCoin(coinDataItem.id!!)
+                    navToCoinAction.goToCoin(coinDataItem.id!!)
                 }
                 .setPositiveButton("Close") { _, _ -> }.show()
         }
@@ -58,7 +58,7 @@ class CoinRecyclerAdapter(
             AlertDialog.Builder(holder.coinName.context).setIcon(R.drawable.question_icon)
                 .setTitle("Coin data:").setMessage(coinDataItem.getShortData())
                 .setNegativeButton("More") { _, _ ->
-                    navToCoinInterface.goToCoin(coinDataItem.id!!)
+                    navToCoinAction.goToCoin(coinDataItem.id!!)
                 }
                 .setPositiveButton("Close") { _, _ -> }.show()
         }

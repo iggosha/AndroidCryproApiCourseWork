@@ -8,7 +8,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.CreationExtras
 import com.coursework.data.controller.RetrofitController
 import com.coursework.data.responses.sub.CurrencyPair
-import com.coursework.data.responses.sub.ExchangeData
+import com.coursework.data.responses.ExchangeData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

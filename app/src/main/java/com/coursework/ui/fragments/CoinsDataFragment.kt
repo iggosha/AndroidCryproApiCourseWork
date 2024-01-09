@@ -12,14 +12,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.coursework.data.NavToCoinInterface
 import com.coursework.data.NavToMarketsInterface
 import com.coursework.databinding.FragmentCoinsDataBinding
-import com.coursework.ui.adapters.CoinRecyclerAdapter
+import com.coursework.ui.adapters.CoinsDataAdapter
 import com.coursework.ui.viewmodels.CoinsDataViewModel
 
 class CoinsDataFragment : Fragment() {
 
     private var _binding: FragmentCoinsDataBinding? = null
     private val binding get() = _binding!!
-    private lateinit var coinRecyclerAdapter: CoinRecyclerAdapter
+    private lateinit var coinsDataAdapter: CoinsDataAdapter
     private val viewModel: CoinsDataViewModel by viewModels { CoinsDataViewModel.Factory() }
 
     override fun onCreateView(
@@ -28,12 +28,12 @@ class CoinsDataFragment : Fragment() {
         _binding = FragmentCoinsDataBinding.inflate(layoutInflater, container, false)
 
         binding.coinsDataRecycler.layoutManager = LinearLayoutManager(context)
-        coinRecyclerAdapter = CoinRecyclerAdapter(actionToMarkets, actionToCoin).apply {
+        coinsDataAdapter = CoinsDataAdapter(actionToMarkets, actionToCoin).apply {
             viewModel.coinsDataList.observe(viewLifecycleOwner) {
                 coinsDataList = it
             }
         }
-        binding.coinsDataRecycler.adapter = coinRecyclerAdapter
+        binding.coinsDataRecycler.adapter = coinsDataAdapter
 
         binding.refreshButton.setOnClickListener {
             viewModel.refreshCoinsData()
